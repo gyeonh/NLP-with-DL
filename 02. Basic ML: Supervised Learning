@@ -1,0 +1,21 @@
+# Overview
+
+알고리즘보다 중요한게 머신러닝이라고 생각한다. 
+
+- What is Algorithm
+    
+    ⇒ a sequence of instructions that solves a problem
+    
+
+- Traditionally,
+    1. A detailed problem specification is given. 
+    2. An algorithm is designed to solve the described problem.
+
+- Machine learning : data-driven algorithm design (데이터 기반의 알고리즘을 디자인 하는 것)
+    1. [A rough problem specification is given] ← optional
+    2. A set of examples is provided.
+    3. A machine learning model is “trained” to solve the problem.
+
+문제들이 specification이 잘 나와있는 경우도 있지만, 실제로 사람들이 잘하고 아주 자연적으로 나오는 문제들에 대해서는 specification을 주기가 힘든 경우가 많다. ex) face-detection을 할 때, 어떤 것들을 얼굴로 할지, 숙인 얼굴, 돌린 얼굴 등을 얼굴로 고려할 것인지… 이 같이 애매한 경우에는 보통 example이 주어지고 이에 맞게 학습시킨다.
+
+- A meta-approach to algorithm design.
