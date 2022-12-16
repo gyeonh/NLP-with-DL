@@ -3,19 +3,80 @@
 알고리즘보다 중요한게 머신러닝이라고 생각한다. 
 
 - What is Algorithm
-    
-    ⇒ a sequence of instructions that solves a problem
-    
+
+  ⇒ a sequence of instructions that solves a problem
 
 - Traditionally,
-    1. A detailed problem specification is given. 
-    2. An algorithm is designed to solve the described problem.
+
+  1. A detailed problem specification is given. 
+  2. An algorithm is designed to solve the described problem.
 
 - Machine learning : data-driven algorithm design (데이터 기반의 알고리즘을 디자인 하는 것)
-    1. [A rough problem specification is given] ← optional
-    2. A set of examples is provided.
-    3. A machine learning model is “trained” to solve the problem.
+
+  1. [A rough problem specification is given] ← optional
+  2. A set of examples is provided.
+  3. A machine learning model is “trained” to solve the problem.
 
 문제들이 specification이 잘 나와있는 경우도 있지만, 실제로 사람들이 잘하고 아주 자연적으로 나오는 문제들에 대해서는 specification을 주기가 힘든 경우가 많다. ex) face-detection을 할 때, 어떤 것들을 얼굴로 할지, 숙인 얼굴, 돌린 얼굴 등을 얼굴로 고려할 것인지… 이 같이 애매한 경우에는 보통 example이 주어지고 이에 맞게 학습시킨다.
 
-- A meta-approach to algorithm design.
+- Supervised Learning
+
+  - Provided
+
+    1. a set of N input-output ‘training’ examples
+
+       $D = {(x_1, y_1), … , (x_n, y_n)}$ 
+
+       input과 ouput에 대한 훈련 데이터들이 존재
+
+    2. A per-example loss function
+
+       $l(M(x), y) \geq 0$ 
+
+       머신러닝 모델 $M$이 x라는 input을 받아 ouput y를 줬을 때, 실제로 training example이 주어졌을 때 얼마나 잘 되는지를 확인
+
+       (실제값과 모델이 예측한 값의 차이를 확인)
+
+    3. Evaluation sets: validation and test examples
+
+       $D_{val}, D_{test}$  
+
+       기존의 example이 아닌 다른 sample들에 대해서도 머신러닝 모델이 잘 작동하는지 확인
+
+  - What we must decide
+
+    1. Hypothesis sets $\mathcal {H_1, ..., H_M}$ 
+
+       Each set consists of all compatible models
+
+       각 Hypothesis set 안에는 모든 가능한 비슷한 모델들이 들어가 있음
+
+       ex) 첫번째 가설에는 SVM, 두번째 가설에는 똑같은 SVM인데 다른 kernel function을 적용…
+
+    2. Optimization algorithm
+
+  정리하자면 아래의 4가지가 주어진다.
+
+  1. $D = {(x_1, y_1), … , (x_n, y_n)}$, $D_{val}, D_{test}$ 
+  2. $l(M(x), y) \geq 0$ 
+  3. $\mathcal {H_1, ..., H_M}$ 
+  4. Optimization algorithm
+
+  Supervised learning finds an appropriate algorithm/model automatically.
+
+  ⇒ Traning set을 계산해봤을 때 가장 낮은 loss값이 나오는 모델을 찾는다.
+
+  ⇒ 이 과정은 각 Hypothesis 안에서 계산된다.
+
+  ⇒ 이를 찾을 때 minimize를 해야하기 때문에 여기서 Optimization algorithm이 사용된다.
+
+  ⇒ 결론적으로, 각 hypothesis 안에서 최적의 모델을 찾는다. 이 중에서 뭐가 가장 좋은 모델인지(model selection)를 결정하면 된다.
+
+  각 모델을 찾을 때 training set에 최적한 모델을 찾았기 때문에 서로 다른 hypothesis에서 나온 best model 중에 누가 좋은지 보기 위해서는 훈련셋을 사용하면 안된다. → validation set 사용
+
+  ⇒ reporting을 하기 위해서는 또 다른 데이터셋을 사용해야한다. → test set 사용
+
+  - Three points to consider both in research and in practice
+    1. How do we decide/design a **hypothesis set**?
+    2. How do we decide a **loss function**?
+    3. How do we **optimize** the loss function?
